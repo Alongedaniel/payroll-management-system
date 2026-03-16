@@ -5,15 +5,19 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, AlertCircle } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/contexts/ToastContext";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const { addToast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -23,13 +27,24 @@ export default function LoginPage() {
     }
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Demo credentials check
+      if (email === "demo@example.com" && password === "demo123") {
+        localStorage.setItem("user", JSON.stringify({ email, role: "admin" }));
+        addToast("Login successful!", "success");
+        navigate("/dashboard");
+      } else {
+        await login(email, password);
+        addToast("Login successful!", "success");
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Login failed";
+      setError(errorMessage);
+      addToast(errorMessage, "error");
+    } finally {
       setIsLoading(false);
-      // Mock authentication - in real app, validate with backend
-      localStorage.setItem("user", JSON.stringify({ email, role: "admin" }));
-      navigate("/dashboard");
-    }, 800);
+    }
   };
 
   return (

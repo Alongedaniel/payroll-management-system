@@ -10,4 +10,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor": ["react", "react-router-dom", "react-dom"],
+          "firebase": ["firebase/app", "firebase/auth", "firebase/firestore"],
+          "recharts": ["recharts"],
+          "ui-components": ["lucide-react"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+  },
 });

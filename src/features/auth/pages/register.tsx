@@ -5,9 +5,13 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, User, AlertCircle, CheckCircle } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/contexts/ToastContext";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const { register } = useAuth();
+  const { addToast } = useToast();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -26,7 +30,7 @@ export default function RegisterPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -49,14 +53,20 @@ export default function RegisterPage() {
     }
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      await register(email, password, fullName);
       setSuccess("Account created successfully! Redirecting to login...");
+      addToast("Registration successful!", "success");
       setTimeout(() => {
         navigate("/login");
       }, 1500);
-    }, 800);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Registration failed";
+      setError(errorMessage);
+      addToast(errorMessage, "error");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -3,15 +3,21 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function MainLayout() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    navigate("/login");
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   const navItems = [
@@ -77,12 +83,16 @@ export function MainLayout() {
             <div className="pt-4 border-t border-border space-y-3">
               <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary/50">
                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
-                  JD
+                  {user?.email
+                    ?.charAt(0)
+                    .toUpperCase() || "U"}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium text-sm truncate">John Doe</p>
+                  <p className="font-medium text-sm truncate">
+                    {user?.displayName || user?.email?.split("@")[0] || "User"}
+                  </p>
                   <p className="text-xs text-muted-foreground truncate">
-                    Admin
+                    {user?.role || "Admin"}
                   </p>
                 </div>
               </div>
