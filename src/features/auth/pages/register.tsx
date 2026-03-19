@@ -61,7 +61,8 @@ export default function RegisterPage() {
         navigate("/login");
       }, 1500);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Registration failed";
+      const errorMessage =
+        err instanceof Error ? err.message : "Registration failed";
       setError(errorMessage);
       addToast(errorMessage, "error");
     } finally {

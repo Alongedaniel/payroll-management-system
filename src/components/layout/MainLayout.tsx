@@ -83,9 +83,7 @@ export function MainLayout() {
             <div className="pt-4 border-t border-border space-y-3">
               <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary/50">
                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
-                  {user?.email
-                    ?.charAt(0)
-                    .toUpperCase() || "U"}
+                  {user?.email?.charAt(0).toUpperCase() || "U"}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="font-medium text-sm truncate">

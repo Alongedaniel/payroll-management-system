@@ -33,10 +33,16 @@ export const payrollService = {
     let q = query(collection(db, COLLECTION_NAME));
 
     if (filters?.status) {
-      q = query(collection(db, COLLECTION_NAME), where("status", "==", filters.status));
+      q = query(
+        collection(db, COLLECTION_NAME),
+        where("status", "==", filters.status),
+      );
     }
     if (filters?.employeeId) {
-      q = query(collection(db, COLLECTION_NAME), where("employeeId", "==", filters.employeeId));
+      q = query(
+        collection(db, COLLECTION_NAME),
+        where("employeeId", "==", filters.employeeId),
+      );
     }
 
     const querySnapshot = await getDocs(q);
@@ -77,7 +83,12 @@ export const payrollService = {
     return (baseSalary + bonus - deductions) * 0.18;
   },
 
-  calculateNetSalary(baseSalary: number, bonus: number, deductions: number, tax: number) {
+  calculateNetSalary(
+    baseSalary: number,
+    bonus: number,
+    deductions: number,
+    tax: number,
+  ) {
     return baseSalary + bonus - deductions - tax;
   },
 };

@@ -19,6 +19,7 @@ This guide covers building and deploying the Payroll Management System to Fireba
 ## Environment Setup
 
 ### 1. Install Dependencies
+
 ```bash
 npm install
 ```
@@ -26,6 +27,7 @@ npm install
 ### 2. Configure Environment Variables
 
 Create `.env.local` file in the project root:
+
 ```env
 VITE_FIREBASE_API_KEY=your_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -43,6 +45,7 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ## Development
 
 ### Start Development Server
+
 ```bash
 npm run dev
 ```
@@ -50,16 +53,19 @@ npm run dev
 The app will be available at `http://localhost:5173/`
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
 
 This will:
+
 1. Run TypeScript type checking
 2. Build optimized bundles with code splitting
 3. Generate static files in the `dist/` folder
 
 ### Preview Production Build
+
 ```bash
 npm run preview
 ```
@@ -75,6 +81,7 @@ firebase init hosting
 ```
 
 Select:
+
 - Use an existing project
 - Choose your project
 - Use `dist` as public directory
@@ -84,6 +91,7 @@ Select:
 ### 2. Configure Firebase (`firebase.json`)
 
 Ensure `firebase.json` contains:
+
 ```json
 {
   "hosting": {
@@ -107,6 +115,7 @@ firebase deploy --only hosting
 ```
 
 Or use the one-liner:
+
 ```bash
 npm run build && firebase deploy --only hosting
 ```
@@ -114,6 +123,7 @@ npm run build && firebase deploy --only hosting
 ### 4. View Deployment
 
 After deployment, you'll see a URL like:
+
 ```
 https://your-project-id.web.app/
 ```
@@ -139,18 +149,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
-      
+          node-version: "18"
+          cache: "npm"
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build
         run: npm run build
-      
+
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -163,6 +173,7 @@ jobs:
 ### Setup GitHub Secrets
 
 1. Get Firebase Service Account:
+
 ```bash
 firebase login
 firebase login:ci
@@ -178,11 +189,13 @@ firebase login:ci
 ## Bundle Analysis
 
 ### View Bundle Size
+
 ```bash
 npm run build
 ```
 
 The build output shows:
+
 - `vendor-*.js` - React, React Router
 - `firebase-*.js` - Firebase libraries
 - `recharts-*.js` - Chart libraries
@@ -194,17 +207,20 @@ The build output shows:
 If bundles are still large, consider:
 
 1. **Lazy load routes:**
+
 ```typescript
-const Dashboard = lazy(() => import('@/features/dashboard/pages/dashboard'));
+const Dashboard = lazy(() => import("@/features/dashboard/pages/dashboard"));
 ```
 
 2. **Reduce dependencies:**
+
 ```bash
 npm audit
 npm update
 ```
 
 3. **Enable compression in Firebase:**
+
 ```json
 {
   "hosting": {
@@ -238,6 +254,7 @@ service cloud.firestore {
 ### Create Collections
 
 The app expects these collections:
+
 - `employees` - Employee records
 - `departments` - Department information
 - `payrolls` - Payroll records
@@ -250,6 +267,7 @@ The app expects these collections:
 ### 1. Firebase Security Rules
 
 **Employees Collection:**
+
 ```javascript
 match /employees/{doc=**} {
   allow read: if request.auth != null;
@@ -259,6 +277,7 @@ match /employees/{doc=**} {
 ```
 
 **Departments Collection:**
+
 ```javascript
 match /departments/{doc=**} {
   allow read: if request.auth != null;
@@ -269,6 +288,7 @@ match /departments/{doc=**} {
 ### 2. Environment Variables
 
 Never hardcode sensitive data. Always use environment variables:
+
 - ✅ Use `.env.local`
 - ✅ Use `import.meta.env.VITE_*` to access
 - ❌ Don't commit `.env.local`
@@ -302,16 +322,19 @@ Firebase Hosting handles CORS automatically. For custom API endpoints:
 ## Monitoring & Debugging
 
 ### View Logs
+
 ```bash
 firebase functions:log
 ```
 
 ### Check Deployment Status
+
 ```bash
 firebase hosting:sites
 ```
 
 ### View Real-time Database
+
 ```bash
 firebase database:get /
 ```
@@ -319,6 +342,7 @@ firebase database:get /
 ### Performance Monitoring
 
 Enable in Firebase Console:
+
 1. Performance → Monitoring
 2. Add custom traces
 3. Monitor page load times
@@ -328,11 +352,13 @@ Enable in Firebase Console:
 ## Rollback Deployment
 
 ### View Deployment History
+
 ```bash
 firebase hosting:sites:list
 ```
 
 ### Rollback to Previous Version
+
 ```bash
 firebase hosting:rollback
 ```
@@ -342,6 +368,7 @@ firebase hosting:rollback
 ## Troubleshooting
 
 ### Build Fails
+
 ```bash
 # Clear cache
 rm -rf node_modules package-lock.json
@@ -350,6 +377,7 @@ npm run build
 ```
 
 ### Deploy Fails
+
 ```bash
 # Login again
 firebase logout
@@ -363,12 +391,14 @@ firebase use your-project-id
 ```
 
 ### Environment Variables Not Loading
+
 1. Check `.env.local` exists
 2. Restart dev server: `npm run dev`
 3. Verify variable names start with `VITE_`
 4. Use `import.meta.env.VITE_*` to access
 
 ### Performance Issues
+
 1. Check bundle sizes
 2. Enable code splitting
 3. Compress images
@@ -379,12 +409,14 @@ firebase use your-project-id
 ## Performance Benchmarks
 
 Target metrics:
+
 - **First Contentful Paint (FCP):** < 1.5s
 - **Largest Contentful Paint (LCP):** < 2.5s
 - **Cumulative Layout Shift (CLS):** < 0.1
 - **Bundle Size:** < 500 KB (main chunk)
 
 Current metrics (with code splitting):
+
 - Main bundle: ~366 KB (minified)
 - Firebase chunk: ~193 KB
 - Recharts chunk: ~384 KB

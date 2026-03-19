@@ -3,12 +3,15 @@
 ## Getting Started
 
 ### 1. Start the Development Server
+
 ```bash
 npm run dev
 ```
+
 The app will open at `http://localhost:5174`
 
 ### 2. Login with Demo Credentials
+
 - **Email**: demo@example.com
 - **Password**: demo123
 
@@ -31,6 +34,7 @@ Dashboard (/dashboard)
 ## 🎯 Key Features to Try
 
 ### 1. **Employee Management**
+
 - Go to `/employees`
 - Search for employees by name
 - Filter by status and department
@@ -39,18 +43,21 @@ Dashboard (/dashboard)
 - Edit employee salary structure
 
 ### 2. **Department Management**
+
 - Go to `/departments`
 - Create new department
 - Assign managers
 - View department details
 
 ### 3. **Payroll Processing**
+
 - Go to `/payroll`
 - View payroll preview table
 - Edit individual salary adjustments
 - Process payroll
 
 ### 4. **Analytics**
+
 - Go to `/reports`
 - View payroll trends chart
 - See cost distribution by department
@@ -69,6 +76,7 @@ Dashboard (/dashboard)
 ```bash
 npm run build
 ```
+
 Output will be in the `dist/` folder
 
 ## 🔧 File Structure at a Glance
@@ -85,25 +93,28 @@ To change the color scheme, edit `src/index.css`:
 
 ```css
 :root {
-  --primary: 45 93% 47%;           /* Lemon yellow */
-  --secondary: 45 80% 60%;         /* Light lemon */
-  --background: 60 40% 97%;        /* Off-white */
-  --foreground: 48 9% 15%;         /* Dark text */
+  --primary: 45 93% 47%; /* Lemon yellow */
+  --secondary: 45 80% 60%; /* Light lemon */
+  --background: 60 40% 97%; /* Off-white */
+  --foreground: 48 9% 15%; /* Dark text */
 }
 ```
 
 ## 🐛 Troubleshooting
 
 **CSS not loading?**
+
 - Make sure dev server is running
 - Clear browser cache (Ctrl+Shift+Del)
 - Restart dev server (stop and `npm run dev` again)
 
 **Port already in use?**
+
 - The app will automatically try ports 5173, 5174, 5175, etc.
 - Check the terminal for the actual port
 
 **Components not rendering?**
+
 - Check browser console for errors (F12)
 - Ensure all imports are correct in the file
 

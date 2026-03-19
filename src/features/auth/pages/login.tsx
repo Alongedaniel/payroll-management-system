@@ -7,11 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Mail, Lock, AlertCircle } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
+import { useConsent } from "@/components/ConsentManager";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const { addToast } = useToast();
+  const { openCookieSettings } = useConsent();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -139,6 +141,16 @@ export default function LoginPage() {
               <p>Email: demo@example.com</p>
               <p>Password: demo123</p>
             </div>
+          </div>
+
+          {/* Cookie Settings */}
+          <div className="mt-4 text-center">
+            <button
+              onClick={openCookieSettings}
+              className="text-xs text-primary hover:underline font-medium"
+            >
+              Manage Cookie Settings
+            </button>
           </div>
         </div>
       </Card>

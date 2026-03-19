@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  type ReactNode,
+} from "react";
 
 export interface Toast {
   id: string;
@@ -31,7 +37,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         }, duration);
       }
     },
-    []
+    [],
   );
 
   const removeToast = useCallback((id: string) => {

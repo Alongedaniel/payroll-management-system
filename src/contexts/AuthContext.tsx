@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 import type { User as FirebaseUser } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import {
@@ -20,7 +26,11 @@ interface AuthContextType {
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, displayName: string) => Promise<void>;
+  register: (
+    email: string,
+    password: string,
+    displayName: string,
+  ) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -31,31 +41,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
-      if (firebaseUser) {
-        const storedUser = localStorage.getItem("user");
-        let role: User["role"] = "admin";
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (firebaseUser: FirebaseUser | null) => {
+        if (firebaseUser) {
+          const storedUser = localStorage.getItem("user");
+          let role: User["role"] = "admin";
 
-        if (storedUser) {
-          try {
-            const parsedUser = JSON.parse(storedUser);
-            role = parsedUser.role || "admin";
-          } catch {
-            role = "admin";
+          if (storedUser) {
+            try {
+              const parsedUser = JSON.parse(storedUser);
+              role = parsedUser.role || "admin";
+            } catch {
+              role = "admin";
+            }
           }
-        }
 
-        setUser({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          displayName: firebaseUser.displayName,
-          role,
-        });
-      } else {
-        setUser(null);
-      }
-      setIsLoading(false);
-    });
+          setUser({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: firebaseUser.displayName,
+            role,
+          });
+        } else {
+          setUser(null);
+        }
+        setIsLoading(false);
+      },
+    );
 
     return unsubscribe;
   }, []);
@@ -68,7 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         JSON.stringify({
           email: result.user.email,
           role: "admin",
-        })
+        }),
       );
       setUser({
         uid: result.user.uid,
@@ -82,16 +95,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const register = async (email: string, password: string, displayName: string) => {
+  const register = async (
+    email: string,
+    password: string,
+    displayName: string,
+  ) => {
     try {
-      const result = await createUserWithEmailAndPassword(auth, email, password);
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
       localStorage.setItem(
         "user",
         JSON.stringify({
           email: result.user.email,
           displayName,
           role: "admin",
-        })
+        }),
       );
       setUser({
         uid: result.user.uid,

@@ -1,9 +1,11 @@
 # Payroll Management System - Project Requirements
 
 ## 1. Project Overview
+
 A comprehensive **Payroll Management System** built with React, TypeScript, and Tailwind CSS. The system provides a complete solution for managing employees, departments, payroll processing, and generating financial reports with a modern, responsive UI.
 
 **Technology Stack:**
+
 - Frontend: React 18 + TypeScript
 - UI Components: shadcn/ui
 - Styling: Tailwind CSS v3
@@ -21,7 +23,9 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 ## 2. Functional Requirements
 
 ### 2.1 Authentication System
+
 **User Stories:**
+
 - Users can register with email, full name, password
 - Users can login with email and password
 - Users can logout from the application
@@ -29,6 +33,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Session persists using localStorage
 
 **Features:**
+
 - Email validation
 - Password strength validation (minimum 8 characters)
 - Password confirmation matching
@@ -36,19 +41,23 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Protected routes redirect unauthenticated users to login
 
 **Pages:**
+
 - `/login` - Login page
 - `/register` - Registration page
 
 ---
 
 ### 2.2 Dashboard
+
 **User Stories:**
+
 - Admins can view overall payroll statistics at a glance
 - Users can see current payroll status
 - Users can view last payroll run date and total cost
 - Users can access quick action buttons to common tasks
 
 **Features:**
+
 - Employee count card
 - Total payroll cost display
 - Pending approvals counter
@@ -58,6 +67,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Alerts and notifications
 
 **Data Displayed:**
+
 - Total Active Employees
 - Total Payroll Cost
 - Pending Approvals
@@ -68,7 +78,9 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 ---
 
 ### 2.3 Employee Management
+
 **User Stories:**
+
 - HR managers can view all employees in a list format
 - HR managers can search employees by name or email
 - HR managers can filter employees by status (active/inactive)
@@ -81,6 +93,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 **Features:**
 
 #### Employee List (`/employees`)
+
 - Search by name, email, or ID (real-time)
 - Filter by status: Active/Inactive
 - Filter by department
@@ -90,19 +103,18 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Add new employee button
 
 #### Employee Form (`/employees/new`, `/employees/:id/edit`)
+
 - Personal Information
   - First Name (required)
   - Last Name (required)
   - Email (required, unique)
   - Phone Number (required)
   - Date of Birth (optional)
-  
 - Position & Department
   - Job Title (required)
   - Department (required, with modal selector)
   - Manager assignment
   - Employment Type (Full-time/Part-time/Contract)
-  
 - Salary Structure
   - Base Salary (required)
   - Bonus Amount (optional)
@@ -115,6 +127,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
     - Blue: Net Salary
 
 #### Department Selector Modal
+
 - Display all departments
 - Show department manager names
 - Show employee count per department
@@ -122,6 +135,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Click to select department
 
 **Mock Data:**
+
 - 248 employees across 5 departments
 - Various salary structures
 - Mix of active and inactive employees
@@ -129,7 +143,9 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 ---
 
 ### 2.4 Department Management
+
 **User Stories:**
+
 - HR managers can view all departments
 - HR managers can create new departments
 - HR managers can edit department information
@@ -140,31 +156,36 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 **Features:**
 
 #### Department List (`/departments`)
+
 - Display department cards with:
   - Department name
   - Manager name
   - Employee count
   - Annual budget
   - Status (Active/Inactive)
-  
+
 #### Create Department Modal
+
 - Department name (required)
 - Manager selection from employee list
 - Annual budget (required)
 - Description (optional)
 
 #### Edit Department Dialog
+
 - Update department information
 - Change assigned manager
 - Update budget
 
 #### Department Details
+
 - List of employees in department
 - Total salary cost
 - Manager information
 - Edit/Delete options
 
 **Mock Data:**
+
 - 5 departments: HR, Finance, Engineering, Sales, Operations
 - Assigned managers for each
 - Employee distribution
@@ -172,7 +193,9 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 ---
 
 ### 2.5 Payroll Management
+
 **User Stories:**
+
 - Payroll officers can view payroll dashboard
 - Payroll officers can create new payroll runs
 - Payroll officers can preview payroll with editable data
@@ -184,16 +207,19 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 **Features:**
 
 #### Payroll Dashboard (`/payroll`)
+
 - Status cards showing:
   - Current payroll period
   - Last payroll run date
   - Total payroll cost
   - Employees in payroll
-  
+
 #### Create Payroll Button
+
 - Start new payroll processing
 
 #### Payroll Preview Table
+
 - Editable employee salary table showing:
   - Employee ID and Name
   - Base Salary
@@ -202,14 +228,16 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
   - Tax
   - Net Salary
   - Inline edit capability
-  
+
 #### Adjustment Modal
+
 - Edit individual employee adjustments
 - Bonus modification
 - Deduction modification
 - Reason for adjustment (optional)
 
 #### Summary Row
+
 - Total Base Salary
 - Total Bonus
 - Total Deductions
@@ -217,18 +245,22 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Total Net Salary
 
 #### Process Payroll Button
+
 - Finalize and process payroll
 - Generate payroll records
 - Send notifications
 
 **Calculations:**
+
 - Tax: 18% of (Base + Bonus - Deductions)
 - Net Salary = Base + Bonus - Deductions - Tax
 
 ---
 
 ### 2.6 Reports & Analytics
+
 **User Stories:**
+
 - Finance managers can view payroll analytics
 - Finance managers can generate payroll trends
 - Finance managers can analyze cost by department
@@ -241,6 +273,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 #### Reports Dashboard (`/reports`)
 
 #### Filter Panel
+
 - Date range picker (start and end date)
 - Department multi-select filter
 - Report type selection:
@@ -250,29 +283,34 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
   - Department Breakdown
 
 #### Summary Cards
+
 - Total Payroll Cost (current period)
 - Average Salary Per Employee
 - Total Active Employees
 - Total Departments
 
 #### Payroll Trend Chart
+
 - Line chart showing 6-month payroll trend
 - X-axis: Months
 - Y-axis: Cost (in currency)
 - Interactive hover tooltips
 
 #### Cost by Department Chart
+
 - Pie chart showing payroll distribution
 - Color-coded by department
 - Percentage display
 
 #### Salary Distribution Chart
+
 - Bar chart showing salary ranges
 - X-axis: Salary ranges
 - Y-axis: Number of employees
 - Interactive legend
 
 #### Metrics Table
+
 - Detailed breakdown table showing:
   - Department name
   - Total salary cost
@@ -285,23 +323,21 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 ## 3. Non-Functional Requirements
 
 ### 3.1 User Interface
+
 - **Responsive Design:**
   - Mobile: 320px - 768px (single column layouts)
   - Tablet: 768px - 1024px (2-3 column layouts)
   - Desktop: 1024px+ (4+ column layouts)
-  
 - **Color Scheme:**
   - Primary Color: Lemon (#FDB022) - HSL(45, 93%, 47%)
   - Secondary Color: Light Lemon (#FED566) - HSL(45, 80%, 60%)
   - Background: Off-white (#F5F3EE) - HSL(60, 40%, 97%)
   - Foreground: Dark (#1A1612) - HSL(48, 9%, 15%)
-  
 - **Styling Approach:**
   - Utility-first CSS with Tailwind CSS
   - No external CSS files (all styling via classes)
   - CSS variables for theme consistency
   - Smooth transitions and hover effects
-  
 - **Interactions:**
   - Cool, subtle animations
   - No heavy animations or distracting effects
@@ -311,6 +347,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
   - Toast notifications (future enhancement)
 
 ### 3.2 Performance
+
 - Fast page load times
 - Efficient rendering with React
 - Code splitting for lazy loading
@@ -318,6 +355,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - Vite for fast development and production builds
 
 ### 3.3 Security
+
 - Environment variables for sensitive data
 - Firebase Authentication for secure user management
 - Input validation on all forms
@@ -325,6 +363,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 - CSRF protection through same-origin policy
 
 ### 3.4 Accessibility
+
 - Semantic HTML structure
 - ARIA labels for interactive elements
 - Keyboard navigation support
@@ -336,6 +375,7 @@ A comprehensive **Payroll Management System** built with React, TypeScript, and 
 ## 4. Technical Specifications
 
 ### 4.1 Project Structure
+
 ```
 src/
 ├── components/
@@ -378,18 +418,21 @@ src/
 ```
 
 ### 4.2 Component Architecture
+
 - **Page Components:** Full page layouts under `/features/*/pages`
 - **Feature Components:** Reusable components under `/features/*/components`
 - **UI Components:** Design system components in `/components/ui`
 - **Layout Component:** Persistent layout with sidebar and header
 
 ### 4.3 State Management
+
 - React hooks (useState, useContext)
 - Form state managed with React Hook Form
 - LocalStorage for session persistence
 - Firebase for data persistence
 
 ### 4.4 Routing Configuration
+
 ```
 /login                      # Public: Login page
 /register                   # Public: Registration page
@@ -403,6 +446,7 @@ src/
 ```
 
 ### 4.5 Environment Variables
+
 ```
 VITE_FIREBASE_API_KEY
 VITE_FIREBASE_AUTH_DOMAIN
@@ -418,17 +462,19 @@ VITE_FIREBASE_MEASUREMENT_ID
 ## 5. Data Models
 
 ### 5.1 User
+
 ```typescript
 {
   id: string;
   email: string;
   password: string;
-  role: 'admin' | 'hr' | 'payroll' | 'finance';
+  role: "admin" | "hr" | "payroll" | "finance";
   createdAt: Date;
 }
 ```
 
 ### 5.2 Employee
+
 ```typescript
 {
   id: string;
@@ -451,6 +497,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 ```
 
 ### 5.3 Department
+
 ```typescript
 {
   id: string;
@@ -458,12 +505,13 @@ VITE_FIREBASE_MEASUREMENT_ID
   managerId: string;
   budget: number;
   description: string;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
   createdAt: Date;
 }
 ```
 
 ### 5.4 Payroll
+
 ```typescript
 {
   id: string;
@@ -475,13 +523,14 @@ VITE_FIREBASE_MEASUREMENT_ID
   deductions: number;
   tax: number;
   netSalary: number;
-  status: 'draft' | 'processing' | 'completed';
+  status: "draft" | "processing" | "completed";
   processedBy: string;
   processedAt: Date;
 }
 ```
 
 ### 5.5 Report
+
 ```typescript
 {
   id: string;
@@ -500,18 +549,21 @@ VITE_FIREBASE_MEASUREMENT_ID
 ## 6. Testing Requirements
 
 ### 6.1 Unit Tests
+
 - Component rendering tests
 - Utility function tests
 - Form validation tests
 - Calculation tests (salary, tax)
 
 ### 6.2 Integration Tests
+
 - Page navigation
 - Form submission flows
 - Data filtering and pagination
 - Authentication flows
 
 ### 6.3 E2E Tests
+
 - Complete user workflows
 - Cross-browser testing
 - Mobile responsiveness verification
@@ -521,6 +573,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 ## 7. Deployment Requirements
 
 ### 7.1 Build Process
+
 - Vite build optimization
 - TypeScript compilation
 - CSS minification via Tailwind
@@ -528,12 +581,14 @@ VITE_FIREBASE_MEASUREMENT_ID
 - Asset optimization
 
 ### 7.2 Hosting
+
 - Firebase Hosting
 - Environment variable management
 - HTTPS enforcement
 - CDN distribution
 
 ### 7.3 CI/CD
+
 - GitHub Actions for automated testing and deployment
 - Pre-commit hooks for code quality
 - Automated builds on push
@@ -543,6 +598,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 ## 8. Future Enhancements
 
 ### 8.1 Phase 2 Features
+
 - [ ] Password reset functionality
 - [ ] Employee attendance tracking
 - [ ] Leave management system
@@ -555,6 +611,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [ ] Data export (CSV, Excel)
 
 ### 8.2 Phase 3 Features
+
 - [ ] Mobile app (React Native)
 - [ ] Employee self-service portal
 - [ ] Advanced analytics with ML predictions
@@ -565,6 +622,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [ ] Performance review system
 
 ### 8.3 Phase 4 Features
+
 - [ ] AI-powered salary recommendations
 - [ ] Predictive attrition analysis
 - [ ] Workflow automation
@@ -592,20 +650,21 @@ VITE_FIREBASE_MEASUREMENT_ID
 
 ## 10. Project Timeline (Estimated)
 
-| Phase | Duration | Status |
-|-------|----------|--------|
-| Setup & Configuration | 1 day | ✅ Complete |
-| Core Features Development | 5 days | ✅ Complete |
-| Testing & Debugging | 2 days | ⏳ In Progress |
-| Optimization & Polish | 1 day | ⏳ Pending |
-| Deployment | 1 day | ⏳ Pending |
-| **Total** | **10 days** | |
+| Phase                     | Duration    | Status         |
+| ------------------------- | ----------- | -------------- |
+| Setup & Configuration     | 1 day       | ✅ Complete    |
+| Core Features Development | 5 days      | ✅ Complete    |
+| Testing & Debugging       | 2 days      | ⏳ In Progress |
+| Optimization & Polish     | 1 day       | ⏳ Pending     |
+| Deployment                | 1 day       | ⏳ Pending     |
+| **Total**                 | **10 days** |                |
 
 ---
 
 ## 11. Acceptance Criteria
 
 ### 11.1 Authentication
+
 - [x] Users can register with validation
 - [x] Users can login with demo credentials
 - [x] Users can logout
@@ -613,6 +672,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [x] Unauthorized users are redirected to login
 
 ### 11.2 Employee Management
+
 - [x] Display list of 248 mock employees
 - [x] Search functionality working
 - [x] Filter by status working
@@ -622,6 +682,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [x] Salary structure calculator
 
 ### 11.3 Department Management
+
 - [x] Display all departments
 - [x] Create new departments
 - [x] Edit departments
@@ -629,6 +690,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [x] Assign managers
 
 ### 11.4 Payroll Processing
+
 - [x] View payroll dashboard
 - [x] Create payroll runs
 - [x] Preview with editable table
@@ -636,6 +698,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [x] Process payroll
 
 ### 11.5 Reporting
+
 - [x] Display analytics dashboard
 - [x] Generate trend charts (6-month)
 - [x] Show cost by department
@@ -643,6 +706,7 @@ VITE_FIREBASE_MEASUREMENT_ID
 - [x] Filter by date and department
 
 ### 11.6 Design & UX
+
 - [x] White and lemon color scheme applied
 - [x] Responsive on mobile/tablet/desktop
 - [x] Smooth transitions and interactions
@@ -660,4 +724,4 @@ VITE_FIREBASE_MEASUREMENT_ID
 
 ---
 
-*Last Updated: March 16, 2026*
+_Last Updated: March 16, 2026_

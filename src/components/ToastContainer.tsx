@@ -38,11 +38,13 @@ export function ToastContainer() {
         <div
           key={toast.id}
           className={`flex items-center gap-3 p-4 rounded-lg border ${getBackgroundColor(
-            toast.type
+            toast.type,
           )} shadow-lg animate-in slide-in-from-right-full`}
         >
           {getIcon(toast.type)}
-          <p className="flex-1 text-sm font-medium text-foreground">{toast.message}</p>
+          <p className="flex-1 text-sm font-medium text-foreground">
+            {toast.message}
+          </p>
           <button
             onClick={() => removeToast(toast.id)}
             className="p-1 hover:bg-black/10 rounded"

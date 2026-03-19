@@ -3,6 +3,7 @@
 A modern, responsive payroll management system built with React, TypeScript, Tailwind CSS, and shadcn/ui components. Features a white and lemon color scheme.
 
 ## 🎨 Color Scheme
+
 - **Primary (Lemon)**: `#FDB022` - Used for main CTAs, highlights
 - **Secondary (Light Lemon)**: `#FECA57` - Used for backgrounds, secondary elements
 - **Background**: Light off-white (`#F9F9F9`)
@@ -44,6 +45,7 @@ src/
 ## 🚀 Features
 
 ### 1. **Authentication**
+
 - **Login Page** (`/login`)
   - Email/password form with validation
   - Demo credentials: demo@example.com / demo123
@@ -57,6 +59,7 @@ src/
   - Success message with redirect
 
 ### 2. **Dashboard** (`/dashboard`)
+
 - **Status Cards**: Total employees, active payrolls, total payroll cost, pending approvals
 - **Quick Actions**: Create Payroll, Run Payroll, Add Employee, View Reports
 - **Upcoming Payrolls**: Timeline of payroll schedules
@@ -64,11 +67,13 @@ src/
 - **Recent Activities**: Activity feed
 
 **Answers Dashboard Questions:**
+
 - ✅ Is payroll due? - Displayed in alert card
 - ✅ What's current payroll status? - Shows in status card
 - ✅ Total payroll cost? - Highlighted in primary card
 
 ### 3. **Employees** (`/employees`)
+
 - **Employee List Page**
   - 📊 Table with employee data (name, email, department, position, status, actions)
   - 🔍 Search by name or email
@@ -91,6 +96,7 @@ src/
   - Department Selector Modal (shows all departments with managers)
 
 ### 4. **Departments** (`/departments`)
+
 - Create new departments with manager assignment
 - View all departments with:
   - Department name
@@ -103,13 +109,16 @@ src/
 - Stats cards: Total departments, total employees, total budget
 
 ### 5. **Payroll Dashboard** (`/payroll`)
+
 **Payroll Status Cards:**
+
 - Current status (Draft/Processed)
 - Last payroll run date
 - Total employees in payroll
 - Total payroll cost (highlighted)
 
 **Payroll Table** (Filterable & Editable):
+
 - Employee name
 - Base salary
 - Bonus (green)
@@ -119,11 +128,13 @@ src/
 - Edit button for each row
 
 **Features:**
+
 - ✏️ Edit adjustment modal - Adjust bonus, deductions, tax
 - ▶️ Process Payroll button - Changes status to processed
 - 📊 Summary row showing totals
 
 ### 6. **Reports & Analytics** (`/reports`)
+
 - **Filter Panel**:
   - Date range selector (Last month, 3 months, 6 months, 1 year)
   - Department filter
@@ -150,12 +161,14 @@ src/
 ## 🎯 Key Interactions
 
 ### Sidebar Navigation
+
 - Collapsible on desktop, drawer on mobile
 - Quick access to all main sections
 - User profile section
 - Icons for visual identification
 
 ### Responsive Design
+
 - ✅ Mobile-first approach
 - ✅ Tablet-optimized layouts
 - ✅ Desktop full-width views
@@ -163,6 +176,7 @@ src/
 - ✅ Collapsible sidebar on mobile
 
 ### UI Components Used (shadcn/ui)
+
 - Button, Card, Input, Label
 - Select, Badge, Table
 - Dialog (modals)
@@ -172,6 +186,7 @@ src/
 - Form components with validation
 
 ### Styling
+
 - **Tailwind CSS v4** with @tailwindcss/postcss
 - **CSS Variables** for theming (white and lemon scheme)
 - **No external CSS** - all styling via Tailwind utilities
@@ -180,22 +195,27 @@ src/
 ## 🔧 Development
 
 ### Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### Start Development Server
+
 ```bash
 npm run dev
 ```
+
 Server runs on `http://localhost:5174`
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
 
 ### Key Technologies
+
 - ⚛️ React 18 with TypeScript
 - 🎯 React Router v6 for routing
 - 🎨 Tailwind CSS v4
@@ -255,6 +275,7 @@ npm run build
 ## 📊 Mock Data
 
 All pages include realistic mock data:
+
 - 248 employees across 5 departments
 - 3 months of payroll data
 - Department budgets and assignments
@@ -263,6 +284,7 @@ All pages include realistic mock data:
 ## 🔒 Authentication
 
 Currently uses localStorage for demo purposes. In production:
+
 - Replace with actual JWT authentication
 - Implement proper session management
 - Add role-based access control
@@ -270,6 +292,7 @@ Currently uses localStorage for demo purposes. In production:
 ## 🚀 Ready to Deploy
 
 The application is production-ready and can be:
+
 - Deployed to Vercel, Netlify, or any static host
 - Connected to a backend API
 - Integrated with a real database

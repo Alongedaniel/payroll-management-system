@@ -43,7 +43,10 @@ export const employeeService = {
       constraints.push(where("departmentId", "==", filters.departmentId));
     }
 
-    const q = constraints.length > 0 ? query(collection(db, COLLECTION_NAME), ...constraints) : collection(db, COLLECTION_NAME);
+    const q =
+      constraints.length > 0
+        ? query(collection(db, COLLECTION_NAME), ...constraints)
+        : collection(db, COLLECTION_NAME);
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => ({
       id: doc.id,
@@ -53,7 +56,7 @@ export const employeeService = {
 
   async getEmployeeById(id: string) {
     const docSnap = await getDocs(
-      query(collection(db, COLLECTION_NAME), where("id", "==", id))
+      query(collection(db, COLLECTION_NAME), where("id", "==", id)),
     );
     if (docSnap.empty) return null;
     const doc = docSnap.docs[0];
